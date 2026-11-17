@@ -22,10 +22,10 @@
 
 | Role | Name | Enrollment No. | GitHub Username |
 |------|------|----------------|-----------------|
-| Group Lead | | | |
-| Member 2 | | | |
-| Member 3 | | | |
-| Member 4 | | | |
+| Group Lead |Saksham Chauhan|2501010394| |
+| Member 2 |Samarthya Seth|2501010658| |
+| Member 3 |Palak Garg| |2501010316|
+| Member 4 |Rama Attri| | |
 
 **Team No.:** ____ · **Section:** ____ · **Repository URL:** ____
 
