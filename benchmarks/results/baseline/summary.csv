@@ -1,0 +1,4 @@
+query_id,description,execution_time_ms,status
+Q1,Total Surplus Food Donated by Category,45.2,Completed
+Q2,Top Donors by Total Quantity (kg),38.7,Completed
+Q3,Average Time-to-Claim by City,52.1,Completed
