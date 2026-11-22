@@ -1,0 +1,72 @@
+=== R12 run 1 ===
+GroupAggregate  (cost=11730.29..12876.13 rows=41667 width=72) (actual time=28.270..31.252 rows=24 loops=1)
+  Group Key: (EXTRACT(hour FROM t.requested_at))
+  Buffers: shared hit=4812
+  ->  Sort  (cost=11730.29..11834.46 rows=41667 width=38) (actual time=28.128..28.874 rows=41667 loops=1)
+        Sort Key: (EXTRACT(hour FROM t.requested_at))
+        Sort Method: quicksort  Memory: 3158kB
+        Buffers: shared hit=4812
+        ->  Hash Join  (cost=1.09..8533.05 rows=41667 width=38) (actual time=0.022..23.984 rows=41667 loops=1)
+              Hash Cond: (t.city_id = c.city_id)
+              Buffers: shared hit=4809
+              ->  Seq Scan on trips t  (cost=0.00..7308.00 rows=250000 width=18) (actual time=0.003..9.987 rows=250000 loops=1)
+                    Buffers: shared hit=4808
+              ->  Hash  (cost=1.07..1.07 rows=1 width=4) (actual time=0.005..0.005 rows=1 loops=1)
+                    Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                    Buffers: shared hit=1
+                    ->  Seq Scan on cities c  (cost=0.00..1.07 rows=1 width=4) (actual time=0.002..0.002 rows=1 loops=1)
+                          Filter: ((city_name)::text = 'Delhi'::text)
+                          Rows Removed by Filter: 5
+                          Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=258
+Planning Time: 0.282 ms
+Execution Time: 31.283 ms
+=== R12 run 2 ===
+GroupAggregate  (cost=11730.29..12876.13 rows=41667 width=72) (actual time=28.319..31.245 rows=24 loops=1)
+  Group Key: (EXTRACT(hour FROM t.requested_at))
+  Buffers: shared hit=4812
+  ->  Sort  (cost=11730.29..11834.46 rows=41667 width=38) (actual time=28.180..28.926 rows=41667 loops=1)
+        Sort Key: (EXTRACT(hour FROM t.requested_at))
+        Sort Method: quicksort  Memory: 3158kB
+        Buffers: shared hit=4812
+        ->  Hash Join  (cost=1.09..8533.05 rows=41667 width=38) (actual time=0.020..24.127 rows=41667 loops=1)
+              Hash Cond: (t.city_id = c.city_id)
+              Buffers: shared hit=4809
+              ->  Seq Scan on trips t  (cost=0.00..7308.00 rows=250000 width=18) (actual time=0.003..9.956 rows=250000 loops=1)
+                    Buffers: shared hit=4808
+              ->  Hash  (cost=1.07..1.07 rows=1 width=4) (actual time=0.004..0.004 rows=1 loops=1)
+                    Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                    Buffers: shared hit=1
+                    ->  Seq Scan on cities c  (cost=0.00..1.07 rows=1 width=4) (actual time=0.002..0.002 rows=1 loops=1)
+                          Filter: ((city_name)::text = 'Delhi'::text)
+                          Rows Removed by Filter: 5
+                          Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=258
+Planning Time: 0.274 ms
+Execution Time: 31.275 ms
+=== R12 run 3 ===
+GroupAggregate  (cost=11730.29..12876.13 rows=41667 width=72) (actual time=27.908..30.935 rows=24 loops=1)
+  Group Key: (EXTRACT(hour FROM t.requested_at))
+  Buffers: shared hit=4812
+  ->  Sort  (cost=11730.29..11834.46 rows=41667 width=38) (actual time=27.769..28.519 rows=41667 loops=1)
+        Sort Key: (EXTRACT(hour FROM t.requested_at))
+        Sort Method: quicksort  Memory: 3158kB
+        Buffers: shared hit=4812
+        ->  Hash Join  (cost=1.09..8533.05 rows=41667 width=38) (actual time=0.017..23.689 rows=41667 loops=1)
+              Hash Cond: (t.city_id = c.city_id)
+              Buffers: shared hit=4809
+              ->  Seq Scan on trips t  (cost=0.00..7308.00 rows=250000 width=18) (actual time=0.002..9.848 rows=250000 loops=1)
+                    Buffers: shared hit=4808
+              ->  Hash  (cost=1.07..1.07 rows=1 width=4) (actual time=0.004..0.004 rows=1 loops=1)
+                    Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                    Buffers: shared hit=1
+                    ->  Seq Scan on cities c  (cost=0.00..1.07 rows=1 width=4) (actual time=0.002..0.002 rows=1 loops=1)
+                          Filter: ((city_name)::text = 'Delhi'::text)
+                          Rows Removed by Filter: 5
+                          Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=258
+Planning Time: 0.262 ms
+Execution Time: 30.964 ms

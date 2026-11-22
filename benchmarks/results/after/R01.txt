@@ -1,0 +1,54 @@
+=== R01 run 1 ===
+Limit  (cost=35.74..35.76 rows=8 width=114) (actual time=0.043..0.044 rows=8 loops=1)
+  Buffers: shared hit=11 read=3
+  ->  Sort  (cost=35.74..35.76 rows=8 width=114) (actual time=0.042..0.043 rows=8 loops=1)
+        Sort Key: requested_at DESC
+        Sort Method: quicksort  Memory: 27kB
+        Buffers: shared hit=11 read=3
+        ->  Bitmap Heap Scan on trips  (cost=4.48..35.62 rows=8 width=114) (actual time=0.013..0.031 rows=8 loops=1)
+              Recheck Cond: (rider_id = 1042)
+              Heap Blocks: exact=8
+              Buffers: shared hit=8 read=3
+              ->  Bitmap Index Scan on idx_trips_rider_req  (cost=0.00..4.48 rows=8 width=0) (actual time=0.009..0.009 rows=8 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Buffers: shared read=3
+Planning:
+  Buffers: shared hit=255 read=7
+Planning Time: 0.391 ms
+Execution Time: 0.061 ms
+=== R01 run 2 ===
+Limit  (cost=35.74..35.76 rows=8 width=114) (actual time=0.038..0.038 rows=8 loops=1)
+  Buffers: shared hit=14
+  ->  Sort  (cost=35.74..35.76 rows=8 width=114) (actual time=0.037..0.038 rows=8 loops=1)
+        Sort Key: requested_at DESC
+        Sort Method: quicksort  Memory: 27kB
+        Buffers: shared hit=14
+        ->  Bitmap Heap Scan on trips  (cost=4.48..35.62 rows=8 width=114) (actual time=0.010..0.026 rows=8 loops=1)
+              Recheck Cond: (rider_id = 1042)
+              Heap Blocks: exact=8
+              Buffers: shared hit=11
+              ->  Bitmap Index Scan on idx_trips_rider_req  (cost=0.00..4.48 rows=8 width=0) (actual time=0.006..0.006 rows=8 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=272
+Planning Time: 0.346 ms
+Execution Time: 0.054 ms
+=== R01 run 3 ===
+Limit  (cost=35.74..35.76 rows=8 width=114) (actual time=0.037..0.038 rows=8 loops=1)
+  Buffers: shared hit=14
+  ->  Sort  (cost=35.74..35.76 rows=8 width=114) (actual time=0.037..0.037 rows=8 loops=1)
+        Sort Key: requested_at DESC
+        Sort Method: quicksort  Memory: 27kB
+        Buffers: shared hit=14
+        ->  Bitmap Heap Scan on trips  (cost=4.48..35.62 rows=8 width=114) (actual time=0.009..0.026 rows=8 loops=1)
+              Recheck Cond: (rider_id = 1042)
+              Heap Blocks: exact=8
+              Buffers: shared hit=11
+              ->  Bitmap Index Scan on idx_trips_rider_req  (cost=0.00..4.48 rows=8 width=0) (actual time=0.006..0.006 rows=8 loops=1)
+                    Index Cond: (rider_id = 1042)
+                    Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=272
+Planning Time: 0.344 ms
+Execution Time: 0.054 ms

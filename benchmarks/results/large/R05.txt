@@ -1,0 +1,27 @@
+=== R05 run 1 ===
+Limit  (cost=0.29..122.51 rows=50 width=30) (actual time=0.058..0.405 rows=50 loops=1)
+  Buffers: shared read=52
+  ->  Index Scan using idx_trips_active_status on trips  (cost=0.29..47788.82 rows=19550 width=30) (actual time=0.057..0.398 rows=50 loops=1)
+        Buffers: shared read=52
+Planning:
+  Buffers: shared hit=272
+Planning Time: 1.571 ms
+Execution Time: 0.432 ms
+=== R05 run 2 ===
+Limit  (cost=0.29..122.51 rows=50 width=30) (actual time=0.013..0.095 rows=50 loops=1)
+  Buffers: shared hit=52
+  ->  Index Scan using idx_trips_active_status on trips  (cost=0.29..47788.82 rows=19550 width=30) (actual time=0.012..0.091 rows=50 loops=1)
+        Buffers: shared hit=52
+Planning:
+  Buffers: shared hit=272
+Planning Time: 0.982 ms
+Execution Time: 0.114 ms
+=== R05 run 3 ===
+Limit  (cost=0.29..122.51 rows=50 width=30) (actual time=0.025..0.194 rows=50 loops=1)
+  Buffers: shared hit=52
+  ->  Index Scan using idx_trips_active_status on trips  (cost=0.29..47788.82 rows=19550 width=30) (actual time=0.024..0.186 rows=50 loops=1)
+        Buffers: shared hit=52
+Planning:
+  Buffers: shared hit=272
+Planning Time: 1.669 ms
+Execution Time: 0.230 ms

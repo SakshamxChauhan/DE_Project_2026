@@ -1,0 +1,45 @@
+=== R09 run 1 ===
+Nested Loop Anti Join  (cost=0.42..10935.02 rows=1 width=46) (actual time=25.679..25.680 rows=0 loops=1)
+  Buffers: shared hit=17867 read=4603 dirtied=832 written=3899
+  ->  Seq Scan on riders r  (cost=0.00..745.00 rows=5000 width=46) (actual time=0.003..2.219 rows=5000 loops=1)
+        Filter: (home_city_id = 1)
+        Rows Removed by Filter: 25000
+        Buffers: shared hit=141 read=229 written=206
+  ->  Index Only Scan using idx_trips_rider_req on trips t  (cost=0.42..11.13 rows=12 width=4) (actual time=0.005..0.005 rows=1 loops=5000)
+        Index Cond: ((rider_id = r.rider_id) AND (requested_at >= '2026-04-01 00:00:00+05:30'::timestamp with time zone))
+        Heap Fetches: 7099
+        Buffers: shared hit=17726 read=4374 written=3693
+Planning:
+  Buffers: shared hit=409 read=7
+Planning Time: 0.565 ms
+Execution Time: 25.694 ms
+=== R09 run 2 ===
+Nested Loop Anti Join  (cost=0.42..10935.02 rows=1 width=46) (actual time=10.745..10.745 rows=0 loops=1)
+  Buffers: shared hit=19598 read=373 written=278
+  ->  Seq Scan on riders r  (cost=0.00..745.00 rows=5000 width=46) (actual time=0.005..1.609 rows=5000 loops=1)
+        Filter: (home_city_id = 1)
+        Rows Removed by Filter: 25000
+        Buffers: shared hit=243 read=127 written=116
+  ->  Index Only Scan using idx_trips_rider_req on trips t  (cost=0.42..11.13 rows=12 width=4) (actual time=0.002..0.002 rows=1 loops=5000)
+        Index Cond: ((rider_id = r.rider_id) AND (requested_at >= '2026-04-01 00:00:00+05:30'::timestamp with time zone))
+        Heap Fetches: 4600
+        Buffers: shared hit=19355 read=246 written=162
+Planning:
+  Buffers: shared hit=410 read=4
+Planning Time: 0.543 ms
+Execution Time: 10.759 ms
+=== R09 run 3 ===
+Nested Loop Anti Join  (cost=0.42..10935.02 rows=1 width=46) (actual time=9.867..9.867 rows=0 loops=1)
+  Buffers: shared hit=19971
+  ->  Seq Scan on riders r  (cost=0.00..745.00 rows=5000 width=46) (actual time=0.002..1.240 rows=5000 loops=1)
+        Filter: (home_city_id = 1)
+        Rows Removed by Filter: 25000
+        Buffers: shared hit=370
+  ->  Index Only Scan using idx_trips_rider_req on trips t  (cost=0.42..11.13 rows=12 width=4) (actual time=0.002..0.002 rows=1 loops=5000)
+        Index Cond: ((rider_id = r.rider_id) AND (requested_at >= '2026-04-01 00:00:00+05:30'::timestamp with time zone))
+        Heap Fetches: 4600
+        Buffers: shared hit=19601
+Planning:
+  Buffers: shared hit=414
+Planning Time: 0.526 ms
+Execution Time: 9.886 ms

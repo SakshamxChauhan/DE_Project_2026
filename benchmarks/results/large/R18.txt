@@ -1,0 +1,69 @@
+=== R18 run 1 ===
+Sort  (cost=17727.08..17739.58 rows=5000 width=29) (actual time=15.106..15.213 rows=5000 loops=1)
+  Sort Key: ((SubPlan 2)) DESC NULLS LAST
+  Sort Method: quicksort  Memory: 466kB
+  Buffers: shared hit=18590 read=3883 dirtied=833
+  ->  Seq Scan on riders r  (cost=0.00..17419.89 rows=5000 width=29) (actual time=0.031..14.580 rows=5000 loops=1)
+        Filter: (home_city_id = 6)
+        Rows Removed by Filter: 25000
+        Buffers: shared hit=18587 read=3883 dirtied=833
+        SubPlan 2
+          ->  Result  (cost=3.32..3.33 rows=1 width=8) (actual time=0.003..0.003 rows=1 loops=5000)
+                Buffers: shared hit=18217 read=3883 dirtied=833
+                InitPlan 1 (returns $1)
+                  ->  Limit  (cost=0.42..3.32 rows=1 width=8) (actual time=0.002..0.002 rows=1 loops=5000)
+                        Buffers: shared hit=18217 read=3883 dirtied=833
+                        ->  Index Only Scan using idx_trips_rider_req on trips t  (cost=0.42..72.92 rows=25 width=8) (actual time=0.002..0.002 rows=1 loops=5000)
+                              Index Cond: ((rider_id = r.rider_id) AND (requested_at IS NOT NULL))
+                              Heap Fetches: 7099
+                              Buffers: shared hit=18217 read=3883
+Planning:
+  Buffers: shared hit=286
+Planning Time: 0.413 ms
+Execution Time: 15.321 ms
+=== R18 run 2 ===
+Sort  (cost=17727.08..17739.58 rows=5000 width=29) (actual time=11.827..11.931 rows=5000 loops=1)
+  Sort Key: ((SubPlan 2)) DESC NULLS LAST
+  Sort Method: quicksort  Memory: 466kB
+  Buffers: shared hit=19974
+  ->  Seq Scan on riders r  (cost=0.00..17419.89 rows=5000 width=29) (actual time=0.029..11.409 rows=5000 loops=1)
+        Filter: (home_city_id = 6)
+        Rows Removed by Filter: 25000
+        Buffers: shared hit=19971
+        SubPlan 2
+          ->  Result  (cost=3.32..3.33 rows=1 width=8) (actual time=0.002..0.002 rows=1 loops=5000)
+                Buffers: shared hit=19601
+                InitPlan 1 (returns $1)
+                  ->  Limit  (cost=0.42..3.32 rows=1 width=8) (actual time=0.002..0.002 rows=1 loops=5000)
+                        Buffers: shared hit=19601
+                        ->  Index Only Scan using idx_trips_rider_req on trips t  (cost=0.42..72.92 rows=25 width=8) (actual time=0.002..0.002 rows=1 loops=5000)
+                              Index Cond: ((rider_id = r.rider_id) AND (requested_at IS NOT NULL))
+                              Heap Fetches: 4600
+                              Buffers: shared hit=19601
+Planning:
+  Buffers: shared hit=286
+Planning Time: 0.401 ms
+Execution Time: 12.034 ms
+=== R18 run 3 ===
+Sort  (cost=17727.08..17739.58 rows=5000 width=29) (actual time=11.473..11.578 rows=5000 loops=1)
+  Sort Key: ((SubPlan 2)) DESC NULLS LAST
+  Sort Method: quicksort  Memory: 466kB
+  Buffers: shared hit=19974
+  ->  Seq Scan on riders r  (cost=0.00..17419.89 rows=5000 width=29) (actual time=0.027..11.065 rows=5000 loops=1)
+        Filter: (home_city_id = 6)
+        Rows Removed by Filter: 25000
+        Buffers: shared hit=19971
+        SubPlan 2
+          ->  Result  (cost=3.32..3.33 rows=1 width=8) (actual time=0.002..0.002 rows=1 loops=5000)
+                Buffers: shared hit=19601
+                InitPlan 1 (returns $1)
+                  ->  Limit  (cost=0.42..3.32 rows=1 width=8) (actual time=0.002..0.002 rows=1 loops=5000)
+                        Buffers: shared hit=19601
+                        ->  Index Only Scan using idx_trips_rider_req on trips t  (cost=0.42..72.92 rows=25 width=8) (actual time=0.002..0.002 rows=1 loops=5000)
+                              Index Cond: ((rider_id = r.rider_id) AND (requested_at IS NOT NULL))
+                              Heap Fetches: 4600
+                              Buffers: shared hit=19601
+Planning:
+  Buffers: shared hit=286
+Planning Time: 0.381 ms
+Execution Time: 11.678 ms

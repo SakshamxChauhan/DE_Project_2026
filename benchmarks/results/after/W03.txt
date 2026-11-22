@@ -1,0 +1,42 @@
+=== W03 run 1 ===
+Update on drivers  (cost=24.11..114.57 rows=0 width=0) (actual time=2.578..2.578 rows=0 loops=1)
+  Buffers: shared hit=7685 read=5 dirtied=14 written=12
+  ->  Bitmap Heap Scan on drivers  (cost=24.11..114.57 rows=764 width=84) (actual time=0.053..0.141 rows=695 loops=1)
+        Recheck Cond: (((status)::text = 'ACTIVE'::text) AND (driver_rating < 3.5))
+        Heap Blocks: exact=56
+        Buffers: shared hit=56 read=4
+        ->  Bitmap Index Scan on idx_drivers_status_rating  (cost=0.00..23.92 rows=764 width=0) (actual time=0.041..0.041 rows=695 loops=1)
+              Index Cond: (((status)::text = 'ACTIVE'::text) AND (driver_rating < 3.5))
+              Buffers: shared read=4
+Planning:
+  Buffers: shared hit=96
+Planning Time: 0.178 ms
+Execution Time: 2.612 ms
+=== W03 run 2 ===
+Update on drivers  (cost=24.90..124.52 rows=0 width=0) (actual time=2.330..2.331 rows=0 loops=1)
+  Buffers: shared hit=7691 dirtied=12 written=12
+  ->  Bitmap Heap Scan on drivers  (cost=24.90..124.52 rows=841 width=84) (actual time=0.043..0.163 rows=695 loops=1)
+        Recheck Cond: (((status)::text = 'ACTIVE'::text) AND (driver_rating < 3.5))
+        Heap Blocks: exact=56
+        Buffers: shared hit=60
+        ->  Bitmap Index Scan on idx_drivers_status_rating  (cost=0.00..24.69 rows=841 width=0) (actual time=0.034..0.034 rows=695 loops=1)
+              Index Cond: (((status)::text = 'ACTIVE'::text) AND (driver_rating < 3.5))
+              Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=96
+Planning Time: 0.163 ms
+Execution Time: 2.362 ms
+=== W03 run 3 ===
+Update on drivers  (cost=29.69..138.46 rows=0 width=0) (actual time=3.718..3.719 rows=0 loops=1)
+  Buffers: shared hit=7670 dirtied=10 written=10
+  ->  Bitmap Heap Scan on drivers  (cost=29.69..138.46 rows=918 width=84) (actual time=0.110..0.285 rows=695 loops=1)
+        Recheck Cond: (((status)::text = 'ACTIVE'::text) AND (driver_rating < 3.5))
+        Heap Blocks: exact=56
+        Buffers: shared hit=60
+        ->  Bitmap Index Scan on idx_drivers_status_rating  (cost=0.00..29.46 rows=918 width=0) (actual time=0.092..0.092 rows=695 loops=1)
+              Index Cond: (((status)::text = 'ACTIVE'::text) AND (driver_rating < 3.5))
+              Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=96
+Planning Time: 0.167 ms
+Execution Time: 3.791 ms

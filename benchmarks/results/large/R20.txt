@@ -1,0 +1,63 @@
+=== R20 run 1 ===
+WindowAgg  (cost=31142.61..33991.19 rows=66222 width=68) (actual time=29.319..36.390 rows=27 loops=1)
+  Buffers: shared hit=6620, temp read=276 written=277
+  ->  GroupAggregate  (cost=31142.61..32997.86 rows=66222 width=36) (actual time=29.024..36.375 rows=27 loops=1)
+        Group Key: ((trips.requested_at)::date)
+        Buffers: shared hit=6620, temp read=276 written=277
+        ->  Sort  (cost=31142.61..31429.92 rows=114923 width=10) (actual time=28.715..31.888 rows=111648 loops=1)
+              Sort Key: ((trips.requested_at)::date)
+              Sort Method: external merge  Disk: 2208kB
+              Buffers: shared hit=6620, temp read=276 written=277
+              ->  Bitmap Heap Scan on trips  (cost=2365.69..19516.15 rows=114923 width=10) (actual time=3.300..21.867 rows=111648 loops=1)
+                    Recheck Cond: (((status)::text = 'COMPLETED'::text) AND (requested_at >= '2026-05-01 00:00:00+05:30'::timestamp with time zone) AND (requested_at < '2026-06-01 00:00:00+05:30'::timestamp with time zone))
+                    Heap Blocks: exact=6409
+                    Buffers: shared hit=6617
+                    ->  Bitmap Index Scan on idx_trips_status_req  (cost=0.00..2336.96 rows=114923 width=0) (actual time=2.883..2.883 rows=111648 loops=1)
+                          Index Cond: (((status)::text = 'COMPLETED'::text) AND (requested_at >= '2026-05-01 00:00:00+05:30'::timestamp with time zone) AND (requested_at < '2026-06-01 00:00:00+05:30'::timestamp with time zone))
+                          Buffers: shared hit=208
+Planning:
+  Buffers: shared hit=267 read=1
+Planning Time: 0.368 ms
+Execution Time: 36.959 ms
+=== R20 run 2 ===
+WindowAgg  (cost=31142.61..33991.19 rows=66222 width=68) (actual time=28.442..35.640 rows=27 loops=1)
+  Buffers: shared hit=6620, temp read=276 written=277
+  ->  GroupAggregate  (cost=31142.61..32997.86 rows=66222 width=36) (actual time=28.150..35.627 rows=27 loops=1)
+        Group Key: ((trips.requested_at)::date)
+        Buffers: shared hit=6620, temp read=276 written=277
+        ->  Sort  (cost=31142.61..31429.92 rows=114923 width=10) (actual time=27.856..31.091 rows=111648 loops=1)
+              Sort Key: ((trips.requested_at)::date)
+              Sort Method: external merge  Disk: 2208kB
+              Buffers: shared hit=6620, temp read=276 written=277
+              ->  Bitmap Heap Scan on trips  (cost=2365.69..19516.15 rows=114923 width=10) (actual time=3.098..21.104 rows=111648 loops=1)
+                    Recheck Cond: (((status)::text = 'COMPLETED'::text) AND (requested_at >= '2026-05-01 00:00:00+05:30'::timestamp with time zone) AND (requested_at < '2026-06-01 00:00:00+05:30'::timestamp with time zone))
+                    Heap Blocks: exact=6409
+                    Buffers: shared hit=6617
+                    ->  Bitmap Index Scan on idx_trips_status_req  (cost=0.00..2336.96 rows=114923 width=0) (actual time=2.707..2.707 rows=111648 loops=1)
+                          Index Cond: (((status)::text = 'COMPLETED'::text) AND (requested_at >= '2026-05-01 00:00:00+05:30'::timestamp with time zone) AND (requested_at < '2026-06-01 00:00:00+05:30'::timestamp with time zone))
+                          Buffers: shared hit=208
+Planning:
+  Buffers: shared hit=268
+Planning Time: 0.334 ms
+Execution Time: 36.207 ms
+=== R20 run 3 ===
+WindowAgg  (cost=31142.61..33991.19 rows=66222 width=68) (actual time=28.640..35.766 rows=27 loops=1)
+  Buffers: shared hit=6620, temp read=276 written=277
+  ->  GroupAggregate  (cost=31142.61..32997.86 rows=66222 width=36) (actual time=28.347..35.752 rows=27 loops=1)
+        Group Key: ((trips.requested_at)::date)
+        Buffers: shared hit=6620, temp read=276 written=277
+        ->  Sort  (cost=31142.61..31429.92 rows=114923 width=10) (actual time=28.053..31.249 rows=111648 loops=1)
+              Sort Key: ((trips.requested_at)::date)
+              Sort Method: external merge  Disk: 2208kB
+              Buffers: shared hit=6620, temp read=276 written=277
+              ->  Bitmap Heap Scan on trips  (cost=2365.69..19516.15 rows=114923 width=10) (actual time=3.113..21.249 rows=111648 loops=1)
+                    Recheck Cond: (((status)::text = 'COMPLETED'::text) AND (requested_at >= '2026-05-01 00:00:00+05:30'::timestamp with time zone) AND (requested_at < '2026-06-01 00:00:00+05:30'::timestamp with time zone))
+                    Heap Blocks: exact=6409
+                    Buffers: shared hit=6617
+                    ->  Bitmap Index Scan on idx_trips_status_req  (cost=0.00..2336.96 rows=114923 width=0) (actual time=2.720..2.720 rows=111648 loops=1)
+                          Index Cond: (((status)::text = 'COMPLETED'::text) AND (requested_at >= '2026-05-01 00:00:00+05:30'::timestamp with time zone) AND (requested_at < '2026-06-01 00:00:00+05:30'::timestamp with time zone))
+                          Buffers: shared hit=208
+Planning:
+  Buffers: shared hit=268
+Planning Time: 0.336 ms
+Execution Time: 36.336 ms

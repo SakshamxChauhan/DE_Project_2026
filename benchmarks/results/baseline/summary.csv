@@ -1,4 +1,31 @@
-query_id,description,execution_time_ms,status
-Q1,Total Surplus Food Donated by Category,45.2,Completed
-Q2,Top Donors by Total Quantity (kg),38.7,Completed
-Q3,Average Time-to-Claim by City,52.1,Completed
+query_id,type,avg_ms,median_ms,min_ms,max_ms,scan_nodes
+R01,READ,13.707,13.496,9.466,18.158,Seq Scan on trips
+R02,READ,11.297,10.788,9.819,13.284,Seq Scan on trips
+R03,READ,6.440,6.648,5.438,7.235,Seq Scan on riders
+R04,READ,9.680,10.184,7.615,11.242,Seq Scan on trips | Seq Scan on cities
+R05,READ,14.166,14.619,13.061,14.819,Seq Scan on trips
+R06,READ,10.635,10.611,9.930,11.365,Seq Scan on trips | Seq Scan on cities
+R07,READ,12.810,12.963,12.214,13.253,Seq Scan on trips | Seq Scan on drivers | Seq Scan on cities
+R08,READ,66.565,66.670,65.431,67.594,Seq Scan on payments
+R09,READ,24.733,24.584,24.368,25.248,Seq Scan on riders | Seq Scan on trips
+R10,READ,14.236,14.185,14.077,14.447,Seq Scan on drivers | Seq Scan on trips
+R11,READ,17.016,17.055,16.683,17.311,Seq Scan on trips | Seq Scan on ratings
+R12,READ,31.174,31.275,30.964,31.283,Seq Scan on trips | Seq Scan on cities
+R13,READ,6.715,6.655,6.595,6.894,Seq Scan on riders
+R14,READ,0.194,0.189,0.185,0.207,Seq Scan on vehicles | Index Scan using drivers_pkey on drivers
+R15,READ,6.648,7.088,5.474,7.382,Index Scan using trips_pkey on trips | Index Scan using riders_pkey on riders | Index Scan using drivers_pkey on drivers | Index Scan using vehicles_pkey on vehicles | Seq Scan on payments
+R16,READ,26.842,26.160,24.246,30.120,Index Scan using trips_pkey on trips
+R17,READ,17.641,17.677,17.442,17.805,Seq Scan on trips | Seq Scan on cities
+R18,READ,36263.480,36402.826,35633.696,36753.918,Seq Scan on riders | Seq Scan on trips
+R19,READ,11.242,11.022,10.942,11.761,Seq Scan on trips | Seq Scan on drivers
+R20,READ,12.327,12.274,12.156,12.550,Seq Scan on trips
+R21,READ,23.744,23.778,23.616,23.838,Seq Scan on trips | Seq Scan on promo_codes
+R22,READ,5.731,5.748,5.610,5.835,Seq Scan on payments | Index Scan using trips_pkey on trips | Index Scan using riders_pkey on riders
+R23,READ,131.172,131.122,130.684,131.710,Seq Scan on trips
+R24,READ,12.320,12.323,11.765,12.872,Seq Scan on trips
+R25,READ,16.990,16.968,16.772,17.231,Seq Scan on trips
+W01,WRITE,0.389,0.379,0.362,0.427,(no scan)
+W02,WRITE,0.134,0.136,0.120,0.147,Index Scan using trips_pkey on trips
+W03,WRITE,2.293,2.136,1.634,3.108,Seq Scan on drivers
+W04,WRITE,31.443,30.151,28.348,35.829,(no scan)
+W05,WRITE,15.218,15.179,15.028,15.446,Seq Scan on trips

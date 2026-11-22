@@ -1,0 +1,114 @@
+=== R11 run 1 ===
+Limit  (cost=11666.88..11666.93 rows=20 width=44) (actual time=17.193..17.252 rows=20 loops=1)
+  Buffers: shared hit=5944
+  ->  Sort  (cost=11666.88..11671.05 rows=1667 width=44) (actual time=17.192..17.251 rows=20 loops=1)
+        Sort Key: (round(avg(r.stars), 2))
+        Sort Method: top-N heapsort  Memory: 27kB
+        Buffers: shared hit=5944
+        ->  Finalize HashAggregate  (cost=11543.35..11622.52 rows=1667 width=44) (actual time=16.677..17.088 rows=2500 loops=1)
+              Group Key: t.driver_id
+              Filter: (count(*) >= 20)
+              Batches: 1  Memory Usage: 721kB
+              Buffers: shared hit=5941
+              ->  Gather  (cost=10418.35..11468.35 rows=10000 width=44) (actual time=15.557..16.067 rows=7500 loops=1)
+                    Workers Planned: 2
+                    Workers Launched: 2
+                    Buffers: shared hit=5941
+                    ->  Partial HashAggregate  (cost=9418.35..9468.35 rows=5000 width=44) (actual time=14.320..14.481 rows=2500 loops=3)
+                          Group Key: t.driver_id
+                          Batches: 1  Memory Usage: 721kB
+                          Buffers: shared hit=5941
+                          Worker 0:  Batches: 1  Memory Usage: 721kB
+                          Worker 1:  Batches: 1  Memory Usage: 721kB
+                          ->  Parallel Hash Join  (cost=2758.80..9183.39 rows=31329 width=8) (actual time=3.693..12.735 rows=25000 loops=3)
+                                Hash Cond: (t.trip_id = r.trip_id)
+                                Buffers: shared hit=5941
+                                ->  Parallel Seq Scan on trips t  (cost=0.00..5849.67 rows=104167 width=12) (actual time=0.003..3.676 rows=83333 loops=3)
+                                      Buffers: shared hit=4808
+                                ->  Parallel Hash  (cost=2205.94..2205.94 rows=44229 width=12) (actual time=3.631..3.631 rows=25000 loops=3)
+                                      Buckets: 131072  Batches: 1  Memory Usage: 4576kB
+                                      Buffers: shared hit=1103
+                                      ->  Parallel Seq Scan on ratings r  (cost=0.00..2205.94 rows=44229 width=12) (actual time=0.005..2.350 rows=25000 loops=3)
+                                            Filter: ((rated_by)::text = 'RIDER'::text)
+                                            Rows Removed by Filter: 25000
+                                            Buffers: shared hit=1103
+Planning:
+  Buffers: shared hit=249
+Planning Time: 0.320 ms
+Execution Time: 17.311 ms
+=== R11 run 2 ===
+Limit  (cost=11666.88..11666.93 rows=20 width=44) (actual time=16.930..16.984 rows=20 loops=1)
+  Buffers: shared hit=5944
+  ->  Sort  (cost=11666.88..11671.05 rows=1667 width=44) (actual time=16.929..16.982 rows=20 loops=1)
+        Sort Key: (round(avg(r.stars), 2))
+        Sort Method: top-N heapsort  Memory: 27kB
+        Buffers: shared hit=5944
+        ->  Finalize HashAggregate  (cost=11543.35..11622.52 rows=1667 width=44) (actual time=16.383..16.820 rows=2500 loops=1)
+              Group Key: t.driver_id
+              Filter: (count(*) >= 20)
+              Batches: 1  Memory Usage: 721kB
+              Buffers: shared hit=5941
+              ->  Gather  (cost=10418.35..11468.35 rows=10000 width=44) (actual time=15.381..15.822 rows=7500 loops=1)
+                    Workers Planned: 2
+                    Workers Launched: 2
+                    Buffers: shared hit=5941
+                    ->  Partial HashAggregate  (cost=9418.35..9468.35 rows=5000 width=44) (actual time=14.204..14.360 rows=2500 loops=3)
+                          Group Key: t.driver_id
+                          Batches: 1  Memory Usage: 721kB
+                          Buffers: shared hit=5941
+                          Worker 0:  Batches: 1  Memory Usage: 721kB
+                          Worker 1:  Batches: 1  Memory Usage: 721kB
+                          ->  Parallel Hash Join  (cost=2758.80..9183.39 rows=31329 width=8) (actual time=3.754..12.633 rows=25000 loops=3)
+                                Hash Cond: (t.trip_id = r.trip_id)
+                                Buffers: shared hit=5941
+                                ->  Parallel Seq Scan on trips t  (cost=0.00..5849.67 rows=104167 width=12) (actual time=0.003..3.535 rows=83333 loops=3)
+                                      Buffers: shared hit=4808
+                                ->  Parallel Hash  (cost=2205.94..2205.94 rows=44229 width=12) (actual time=3.699..3.699 rows=25000 loops=3)
+                                      Buckets: 131072  Batches: 1  Memory Usage: 4576kB
+                                      Buffers: shared hit=1103
+                                      ->  Parallel Seq Scan on ratings r  (cost=0.00..2205.94 rows=44229 width=12) (actual time=0.005..2.383 rows=25000 loops=3)
+                                            Filter: ((rated_by)::text = 'RIDER'::text)
+                                            Rows Removed by Filter: 25000
+                                            Buffers: shared hit=1103
+Planning:
+  Buffers: shared hit=249
+Planning Time: 0.298 ms
+Execution Time: 17.055 ms
+=== R11 run 3 ===
+Limit  (cost=11666.88..11666.93 rows=20 width=44) (actual time=16.575..16.628 rows=20 loops=1)
+  Buffers: shared hit=5944
+  ->  Sort  (cost=11666.88..11671.05 rows=1667 width=44) (actual time=16.574..16.627 rows=20 loops=1)
+        Sort Key: (round(avg(r.stars), 2))
+        Sort Method: top-N heapsort  Memory: 27kB
+        Buffers: shared hit=5944
+        ->  Finalize HashAggregate  (cost=11543.35..11622.52 rows=1667 width=44) (actual time=16.061..16.468 rows=2500 loops=1)
+              Group Key: t.driver_id
+              Filter: (count(*) >= 20)
+              Batches: 1  Memory Usage: 721kB
+              Buffers: shared hit=5941
+              ->  Gather  (cost=10418.35..11468.35 rows=10000 width=44) (actual time=15.109..15.507 rows=7500 loops=1)
+                    Workers Planned: 2
+                    Workers Launched: 2
+                    Buffers: shared hit=5941
+                    ->  Partial HashAggregate  (cost=9418.35..9468.35 rows=5000 width=44) (actual time=13.951..14.094 rows=2500 loops=3)
+                          Group Key: t.driver_id
+                          Batches: 1  Memory Usage: 721kB
+                          Buffers: shared hit=5941
+                          Worker 0:  Batches: 1  Memory Usage: 721kB
+                          Worker 1:  Batches: 1  Memory Usage: 721kB
+                          ->  Parallel Hash Join  (cost=2758.80..9183.39 rows=31329 width=8) (actual time=3.775..12.419 rows=25000 loops=3)
+                                Hash Cond: (t.trip_id = r.trip_id)
+                                Buffers: shared hit=5941
+                                ->  Parallel Seq Scan on trips t  (cost=0.00..5849.67 rows=104167 width=12) (actual time=0.006..3.551 rows=83333 loops=3)
+                                      Buffers: shared hit=4808
+                                ->  Parallel Hash  (cost=2205.94..2205.94 rows=44229 width=12) (actual time=3.719..3.719 rows=25000 loops=3)
+                                      Buckets: 131072  Batches: 1  Memory Usage: 4576kB
+                                      Buffers: shared hit=1103
+                                      ->  Parallel Seq Scan on ratings r  (cost=0.00..2205.94 rows=44229 width=12) (actual time=0.004..2.350 rows=25000 loops=3)
+                                            Filter: ((rated_by)::text = 'RIDER'::text)
+                                            Rows Removed by Filter: 25000
+                                            Buffers: shared hit=1103
+Planning:
+  Buffers: shared hit=249
+Planning Time: 0.269 ms
+Execution Time: 16.683 ms

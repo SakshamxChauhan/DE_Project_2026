@@ -1,0 +1,33 @@
+=== W04 run 1 ===
+Insert on trips  (cost=0.00..150.00 rows=0 width=0) (actual time=9.899..9.900 rows=0 loops=1)
+  Buffers: shared hit=10277 dirtied=87 written=87
+  ->  Function Scan on generate_series g  (cost=0.00..150.00 rows=5000 width=306) (actual time=0.477..1.603 rows=5000 loops=1)
+Planning Time: 0.121 ms
+Trigger for constraint trips_rider_id_fkey: time=12.248 calls=5000
+Trigger for constraint trips_driver_id_fkey: time=1.227 calls=5000
+Trigger for constraint trips_vehicle_id_fkey: time=1.130 calls=5000
+Trigger for constraint trips_city_id_fkey: time=9.390 calls=5000
+Trigger for constraint trips_promo_code_fkey: time=1.243 calls=5000
+Execution Time: 35.829 ms
+=== W04 run 2 ===
+Insert on trips  (cost=0.00..150.00 rows=0 width=0) (actual time=5.307..5.308 rows=0 loops=1)
+  Buffers: shared hit=22824 dirtied=71 written=71
+  ->  Function Scan on generate_series g  (cost=0.00..150.00 rows=5000 width=306) (actual time=0.118..0.603 rows=5000 loops=1)
+Planning Time: 0.049 ms
+Trigger for constraint trips_rider_id_fkey: time=11.760 calls=5000
+Trigger for constraint trips_driver_id_fkey: time=1.206 calls=5000
+Trigger for constraint trips_vehicle_id_fkey: time=1.074 calls=5000
+Trigger for constraint trips_city_id_fkey: time=9.040 calls=5000
+Trigger for constraint trips_promo_code_fkey: time=1.106 calls=5000
+Execution Time: 30.151 ms
+=== W04 run 3 ===
+Insert on trips  (cost=0.00..150.00 rows=0 width=0) (actual time=5.813..5.813 rows=0 loops=1)
+  Buffers: shared hit=22858 dirtied=72 written=72
+  ->  Function Scan on generate_series g  (cost=0.00..150.00 rows=5000 width=306) (actual time=0.127..0.640 rows=5000 loops=1)
+Planning Time: 0.050 ms
+Trigger for constraint trips_rider_id_fkey: time=10.748 calls=5000
+Trigger for constraint trips_driver_id_fkey: time=1.048 calls=5000
+Trigger for constraint trips_vehicle_id_fkey: time=0.943 calls=5000
+Trigger for constraint trips_city_id_fkey: time=8.184 calls=5000
+Trigger for constraint trips_promo_code_fkey: time=1.012 calls=5000
+Execution Time: 28.348 ms

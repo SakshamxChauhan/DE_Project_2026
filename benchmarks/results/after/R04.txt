@@ -1,0 +1,63 @@
+=== R04 run 1 ===
+Sort  (cost=739.90..740.44 rows=216 width=31) (actual time=0.107..0.108 rows=0 loops=1)
+  Sort Key: t.requested_at
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=4 read=3
+  ->  Nested Loop  (cost=7.17..731.53 rows=216 width=31) (actual time=0.059..0.060 rows=0 loops=1)
+        Buffers: shared hit=1 read=3
+        ->  Seq Scan on cities c  (cost=0.00..1.07 rows=1 width=4) (actual time=0.010..0.012 rows=1 loops=1)
+              Filter: ((city_name)::text = 'Bengaluru'::text)
+              Rows Removed by Filter: 5
+              Buffers: shared hit=1
+        ->  Bitmap Heap Scan on trips t  (cost=7.17..728.29 rows=216 width=35) (actual time=0.044..0.044 rows=0 loops=1)
+              Recheck Cond: ((c.city_id = city_id) AND (requested_at >= '2026-05-10 00:00:00+05:30'::timestamp with time zone) AND (requested_at < '2026-05-11 00:00:00+05:30'::timestamp with time zone))
+              Buffers: shared read=3
+              ->  Bitmap Index Scan on idx_trips_city_req  (cost=0.00..7.12 rows=216 width=0) (actual time=0.041..0.041 rows=0 loops=1)
+                    Index Cond: ((city_id = c.city_id) AND (requested_at >= '2026-05-10 00:00:00+05:30'::timestamp with time zone) AND (requested_at < '2026-05-11 00:00:00+05:30'::timestamp with time zone))
+                    Buffers: shared read=3
+Planning:
+  Buffers: shared hit=372
+Planning Time: 2.052 ms
+Execution Time: 0.163 ms
+=== R04 run 2 ===
+Sort  (cost=739.90..740.44 rows=216 width=31) (actual time=0.089..0.089 rows=0 loops=1)
+  Sort Key: t.requested_at
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=7
+  ->  Nested Loop  (cost=7.17..731.53 rows=216 width=31) (actual time=0.035..0.035 rows=0 loops=1)
+        Buffers: shared hit=4
+        ->  Seq Scan on cities c  (cost=0.00..1.07 rows=1 width=4) (actual time=0.011..0.012 rows=1 loops=1)
+              Filter: ((city_name)::text = 'Bengaluru'::text)
+              Rows Removed by Filter: 5
+              Buffers: shared hit=1
+        ->  Bitmap Heap Scan on trips t  (cost=7.17..728.29 rows=216 width=35) (actual time=0.019..0.019 rows=0 loops=1)
+              Recheck Cond: ((c.city_id = city_id) AND (requested_at >= '2026-05-10 00:00:00+05:30'::timestamp with time zone) AND (requested_at < '2026-05-11 00:00:00+05:30'::timestamp with time zone))
+              Buffers: shared hit=3
+              ->  Bitmap Index Scan on idx_trips_city_req  (cost=0.00..7.12 rows=216 width=0) (actual time=0.016..0.016 rows=0 loops=1)
+                    Index Cond: ((city_id = c.city_id) AND (requested_at >= '2026-05-10 00:00:00+05:30'::timestamp with time zone) AND (requested_at < '2026-05-11 00:00:00+05:30'::timestamp with time zone))
+                    Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=372
+Planning Time: 2.009 ms
+Execution Time: 0.152 ms
+=== R04 run 3 ===
+Sort  (cost=739.90..740.44 rows=216 width=31) (actual time=0.078..0.079 rows=0 loops=1)
+  Sort Key: t.requested_at
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=7
+  ->  Nested Loop  (cost=7.17..731.53 rows=216 width=31) (actual time=0.033..0.034 rows=0 loops=1)
+        Buffers: shared hit=4
+        ->  Seq Scan on cities c  (cost=0.00..1.07 rows=1 width=4) (actual time=0.010..0.011 rows=1 loops=1)
+              Filter: ((city_name)::text = 'Bengaluru'::text)
+              Rows Removed by Filter: 5
+              Buffers: shared hit=1
+        ->  Bitmap Heap Scan on trips t  (cost=7.17..728.29 rows=216 width=35) (actual time=0.019..0.020 rows=0 loops=1)
+              Recheck Cond: ((c.city_id = city_id) AND (requested_at >= '2026-05-10 00:00:00+05:30'::timestamp with time zone) AND (requested_at < '2026-05-11 00:00:00+05:30'::timestamp with time zone))
+              Buffers: shared hit=3
+              ->  Bitmap Index Scan on idx_trips_city_req  (cost=0.00..7.12 rows=216 width=0) (actual time=0.016..0.016 rows=0 loops=1)
+                    Index Cond: ((city_id = c.city_id) AND (requested_at >= '2026-05-10 00:00:00+05:30'::timestamp with time zone) AND (requested_at < '2026-05-11 00:00:00+05:30'::timestamp with time zone))
+                    Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=372
+Planning Time: 1.814 ms
+Execution Time: 0.141 ms

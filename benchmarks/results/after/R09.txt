@@ -1,0 +1,45 @@
+=== R09 run 1 ===
+Nested Loop Anti Join  (cost=0.42..4925.74 rows=1 width=46) (actual time=5.127..5.127 rows=0 loops=1)
+  Buffers: shared hit=14419 read=958
+  ->  Seq Scan on riders r  (cost=0.00..745.00 rows=5000 width=46) (actual time=0.002..1.258 rows=5000 loops=1)
+        Filter: (home_city_id = 1)
+        Rows Removed by Filter: 25000
+        Buffers: shared hit=370
+  ->  Index Only Scan using idx_trips_rider_req on trips t  (cost=0.42..1.45 rows=4 width=4) (actual time=0.001..0.001 rows=1 loops=5000)
+        Index Cond: ((rider_id = r.rider_id) AND (requested_at >= '2026-04-01 00:00:00+05:30'::timestamp with time zone))
+        Heap Fetches: 6
+        Buffers: shared hit=14049 read=958
+Planning:
+  Buffers: shared hit=410 read=3
+Planning Time: 0.541 ms
+Execution Time: 5.139 ms
+=== R09 run 2 ===
+Nested Loop Anti Join  (cost=0.42..4925.74 rows=1 width=46) (actual time=5.089..5.090 rows=0 loops=1)
+  Buffers: shared hit=15377
+  ->  Seq Scan on riders r  (cost=0.00..745.00 rows=5000 width=46) (actual time=0.003..1.222 rows=5000 loops=1)
+        Filter: (home_city_id = 1)
+        Rows Removed by Filter: 25000
+        Buffers: shared hit=370
+  ->  Index Only Scan using idx_trips_rider_req on trips t  (cost=0.42..1.45 rows=4 width=4) (actual time=0.001..0.001 rows=1 loops=5000)
+        Index Cond: ((rider_id = r.rider_id) AND (requested_at >= '2026-04-01 00:00:00+05:30'::timestamp with time zone))
+        Heap Fetches: 6
+        Buffers: shared hit=15007
+Planning:
+  Buffers: shared hit=413
+Planning Time: 0.612 ms
+Execution Time: 5.103 ms
+=== R09 run 3 ===
+Nested Loop Anti Join  (cost=0.42..4925.74 rows=1 width=46) (actual time=4.907..4.907 rows=0 loops=1)
+  Buffers: shared hit=15377
+  ->  Seq Scan on riders r  (cost=0.00..745.00 rows=5000 width=46) (actual time=0.002..1.191 rows=5000 loops=1)
+        Filter: (home_city_id = 1)
+        Rows Removed by Filter: 25000
+        Buffers: shared hit=370
+  ->  Index Only Scan using idx_trips_rider_req on trips t  (cost=0.42..1.45 rows=4 width=4) (actual time=0.001..0.001 rows=1 loops=5000)
+        Index Cond: ((rider_id = r.rider_id) AND (requested_at >= '2026-04-01 00:00:00+05:30'::timestamp with time zone))
+        Heap Fetches: 6
+        Buffers: shared hit=15007
+Planning:
+  Buffers: shared hit=413
+Planning Time: 0.558 ms
+Execution Time: 4.919 ms

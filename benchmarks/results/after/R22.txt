@@ -1,0 +1,48 @@
+=== R22 run 1 ===
+Nested Loop  (cost=1.13..4688.63 rows=490 width=41) (actual time=0.016..0.016 rows=0 loops=1)
+  Buffers: shared read=3
+  ->  Nested Loop  (cost=0.84..4535.62 rows=490 width=26) (actual time=0.016..0.016 rows=0 loops=1)
+        Buffers: shared read=3
+        ->  Index Scan Backward using idx_payments_status_paid on payments p  (cost=0.42..993.25 rows=490 width=30) (actual time=0.015..0.016 rows=0 loops=1)
+              Index Cond: (((payment_status)::text = 'FAILED'::text) AND (paid_at >= '2026-06-24 00:00:00+05:30'::timestamp with time zone))
+              Buffers: shared read=3
+        ->  Index Scan using trips_pkey on trips t  (cost=0.42..7.23 rows=1 width=12) (never executed)
+              Index Cond: (trip_id = p.trip_id)
+  ->  Index Scan using riders_pkey on riders r  (cost=0.29..0.31 rows=1 width=19) (never executed)
+        Index Cond: (rider_id = t.rider_id)
+Planning:
+  Buffers: shared hit=560 read=4
+Planning Time: 0.710 ms
+Execution Time: 0.030 ms
+=== R22 run 2 ===
+Nested Loop  (cost=1.13..4688.63 rows=490 width=41) (actual time=0.007..0.007 rows=0 loops=1)
+  Buffers: shared hit=3
+  ->  Nested Loop  (cost=0.84..4535.62 rows=490 width=26) (actual time=0.007..0.007 rows=0 loops=1)
+        Buffers: shared hit=3
+        ->  Index Scan Backward using idx_payments_status_paid on payments p  (cost=0.42..993.25 rows=490 width=30) (actual time=0.007..0.007 rows=0 loops=1)
+              Index Cond: (((payment_status)::text = 'FAILED'::text) AND (paid_at >= '2026-06-24 00:00:00+05:30'::timestamp with time zone))
+              Buffers: shared hit=3
+        ->  Index Scan using trips_pkey on trips t  (cost=0.42..7.23 rows=1 width=12) (never executed)
+              Index Cond: (trip_id = p.trip_id)
+  ->  Index Scan using riders_pkey on riders r  (cost=0.29..0.31 rows=1 width=19) (never executed)
+        Index Cond: (rider_id = t.rider_id)
+Planning:
+  Buffers: shared hit=564
+Planning Time: 0.673 ms
+Execution Time: 0.020 ms
+=== R22 run 3 ===
+Nested Loop  (cost=1.13..4688.63 rows=490 width=41) (actual time=0.008..0.009 rows=0 loops=1)
+  Buffers: shared hit=3
+  ->  Nested Loop  (cost=0.84..4535.62 rows=490 width=26) (actual time=0.008..0.008 rows=0 loops=1)
+        Buffers: shared hit=3
+        ->  Index Scan Backward using idx_payments_status_paid on payments p  (cost=0.42..993.25 rows=490 width=30) (actual time=0.008..0.008 rows=0 loops=1)
+              Index Cond: (((payment_status)::text = 'FAILED'::text) AND (paid_at >= '2026-06-24 00:00:00+05:30'::timestamp with time zone))
+              Buffers: shared hit=3
+        ->  Index Scan using trips_pkey on trips t  (cost=0.42..7.23 rows=1 width=12) (never executed)
+              Index Cond: (trip_id = p.trip_id)
+  ->  Index Scan using riders_pkey on riders r  (cost=0.29..0.31 rows=1 width=19) (never executed)
+        Index Cond: (rider_id = t.rider_id)
+Planning:
+  Buffers: shared hit=564
+Planning Time: 0.707 ms
+Execution Time: 0.023 ms

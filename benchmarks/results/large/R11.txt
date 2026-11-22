@@ -1,0 +1,75 @@
+=== R11 run 1 ===
+Limit  (cost=12509.67..12509.72 rows=20 width=44) (actual time=28.127..28.129 rows=20 loops=1)
+  Buffers: shared hit=2045 read=1631 dirtied=1
+  ->  Sort  (cost=12509.67..12513.84 rows=1666 width=44) (actual time=28.127..28.128 rows=20 loops=1)
+        Sort Key: (round(avg(r.stars), 2))
+        Sort Method: top-N heapsort  Memory: 27kB
+        Buffers: shared hit=2045 read=1631 dirtied=1
+        ->  HashAggregate  (cost=12386.19..12465.34 rows=1666 width=44) (actual time=27.595..27.979 rows=2500 loops=1)
+              Group Key: t.driver_id
+              Filter: (count(*) >= 20)
+              Batches: 1  Memory Usage: 721kB
+              Buffers: shared hit=2042 read=1631 dirtied=1
+              ->  Merge Join  (cost=1.32..11819.91 rows=75505 width=8) (actual time=0.298..23.114 rows=75000 loops=1)
+                    Merge Cond: (r.trip_id = t.trip_id)
+                    Buffers: shared hit=2042 read=1631 dirtied=1
+                    ->  Index Only Scan using idx_ratings_rated_by_trip on ratings r  (cost=0.42..2825.76 rows=75505 width=12) (actual time=0.292..4.470 rows=75000 loops=1)
+                          Index Cond: (rated_by = 'RIDER'::text)
+                          Heap Fetches: 0
+                          Buffers: shared read=373
+                    ->  Index Scan using trips_pkey on trips t  (cost=0.42..38797.43 rows=750000 width=12) (actual time=0.004..10.340 rows=150001 loops=1)
+                          Buffers: shared hit=2042 read=1258 dirtied=1
+Planning:
+  Buffers: shared hit=390 read=6
+Planning Time: 0.699 ms
+Execution Time: 28.175 ms
+=== R11 run 2 ===
+Limit  (cost=12509.67..12509.72 rows=20 width=44) (actual time=25.825..25.826 rows=20 loops=1)
+  Buffers: shared hit=3673
+  ->  Sort  (cost=12509.67..12513.84 rows=1666 width=44) (actual time=25.824..25.825 rows=20 loops=1)
+        Sort Key: (round(avg(r.stars), 2))
+        Sort Method: top-N heapsort  Memory: 27kB
+        Buffers: shared hit=3673
+        ->  HashAggregate  (cost=12386.19..12465.34 rows=1666 width=44) (actual time=25.295..25.663 rows=2500 loops=1)
+              Group Key: t.driver_id
+              Filter: (count(*) >= 20)
+              Batches: 1  Memory Usage: 721kB
+              Buffers: shared hit=3670
+              ->  Merge Join  (cost=1.32..11819.91 rows=75505 width=8) (actual time=0.032..20.810 rows=75000 loops=1)
+                    Merge Cond: (r.trip_id = t.trip_id)
+                    Buffers: shared hit=3670
+                    ->  Index Only Scan using idx_ratings_rated_by_trip on ratings r  (cost=0.42..2825.76 rows=75505 width=12) (actual time=0.025..3.344 rows=75000 loops=1)
+                          Index Cond: (rated_by = 'RIDER'::text)
+                          Heap Fetches: 0
+                          Buffers: shared hit=373
+                    ->  Index Scan using trips_pkey on trips t  (cost=0.42..38797.43 rows=750000 width=12) (actual time=0.004..8.771 rows=150001 loops=1)
+                          Buffers: shared hit=3297
+Planning:
+  Buffers: shared hit=396
+Planning Time: 0.487 ms
+Execution Time: 25.872 ms
+=== R11 run 3 ===
+Limit  (cost=12509.67..12509.72 rows=20 width=44) (actual time=25.133..25.134 rows=20 loops=1)
+  Buffers: shared hit=3673
+  ->  Sort  (cost=12509.67..12513.84 rows=1666 width=44) (actual time=25.132..25.133 rows=20 loops=1)
+        Sort Key: (round(avg(r.stars), 2))
+        Sort Method: top-N heapsort  Memory: 27kB
+        Buffers: shared hit=3673
+        ->  HashAggregate  (cost=12386.19..12465.34 rows=1666 width=44) (actual time=24.586..24.972 rows=2500 loops=1)
+              Group Key: t.driver_id
+              Filter: (count(*) >= 20)
+              Batches: 1  Memory Usage: 721kB
+              Buffers: shared hit=3670
+              ->  Merge Join  (cost=1.32..11819.91 rows=75505 width=8) (actual time=0.029..20.242 rows=75000 loops=1)
+                    Merge Cond: (r.trip_id = t.trip_id)
+                    Buffers: shared hit=3670
+                    ->  Index Only Scan using idx_ratings_rated_by_trip on ratings r  (cost=0.42..2825.76 rows=75505 width=12) (actual time=0.024..3.270 rows=75000 loops=1)
+                          Index Cond: (rated_by = 'RIDER'::text)
+                          Heap Fetches: 0
+                          Buffers: shared hit=373
+                    ->  Index Scan using trips_pkey on trips t  (cost=0.42..38797.43 rows=750000 width=12) (actual time=0.003..8.689 rows=150001 loops=1)
+                          Buffers: shared hit=3297
+Planning:
+  Buffers: shared hit=396
+Planning Time: 0.483 ms
+Execution Time: 25.178 ms

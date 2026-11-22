@@ -1,0 +1,72 @@
+=== R08 run 1 ===
+Finalize GroupAggregate  (cost=20955.10..36280.64 rows=87671 width=53) (actual time=48.962..61.380 rows=18 loops=1)
+  Group Key: (date_trunc('month'::text, paid_at)), method
+  Buffers: shared hit=2380, temp read=853 written=856
+  ->  Gather Merge  (cost=20955.10..33869.69 rows=87671 width=53) (actual time=48.188..61.365 rows=36 loops=1)
+        Workers Planned: 1
+        Workers Launched: 1
+        Buffers: shared hit=2380, temp read=853 written=856
+        ->  Partial GroupAggregate  (cost=19955.09..23006.69 rows=87671 width=53) (actual time=35.800..48.226 rows=18 loops=2)
+              Group Key: (date_trunc('month'::text, paid_at)), method
+              Buffers: shared hit=2380, temp read=853 written=856
+              ->  Sort  (cost=19955.09..20302.40 rows=138923 width=19) (actual time=35.019..41.278 rows=118056 loops=2)
+                    Sort Key: (date_trunc('month'::text, paid_at)), method
+                    Sort Method: external merge  Disk: 3528kB
+                    Buffers: shared hit=2380, temp read=853 written=856
+                    Worker 0:  Sort Method: external merge  Disk: 3296kB
+                    ->  Parallel Seq Scan on payments  (cost=0.00..5235.84 rows=138923 width=19) (actual time=0.008..17.477 rows=118056 loops=2)
+                          Filter: ((paid_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (paid_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone) AND ((payment_status)::text = 'SUCCESS'::text))
+                          Rows Removed by Filter: 6944
+                          Buffers: shared hit=2315
+Planning:
+  Buffers: shared hit=157 read=2
+Planning Time: 0.226 ms
+Execution Time: 62.096 ms
+=== R08 run 2 ===
+Finalize GroupAggregate  (cost=20955.10..36280.64 rows=87671 width=53) (actual time=43.378..55.302 rows=18 loops=1)
+  Group Key: (date_trunc('month'::text, paid_at)), method
+  Buffers: shared hit=2380, temp read=853 written=856
+  ->  Gather Merge  (cost=20955.10..33869.69 rows=87671 width=53) (actual time=42.612..55.287 rows=36 loops=1)
+        Workers Planned: 1
+        Workers Launched: 1
+        Buffers: shared hit=2380, temp read=853 written=856
+        ->  Partial GroupAggregate  (cost=19955.09..23006.69 rows=87671 width=53) (actual time=30.807..42.768 rows=18 loops=2)
+              Group Key: (date_trunc('month'::text, paid_at)), method
+              Buffers: shared hit=2380, temp read=853 written=856
+              ->  Sort  (cost=19955.09..20302.40 rows=138923 width=19) (actual time=30.018..36.049 rows=118056 loops=2)
+                    Sort Key: (date_trunc('month'::text, paid_at)), method
+                    Sort Method: external merge  Disk: 3528kB
+                    Buffers: shared hit=2380, temp read=853 written=856
+                    Worker 0:  Sort Method: external merge  Disk: 3296kB
+                    ->  Parallel Seq Scan on payments  (cost=0.00..5235.84 rows=138923 width=19) (actual time=0.007..14.456 rows=118056 loops=2)
+                          Filter: ((paid_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (paid_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone) AND ((payment_status)::text = 'SUCCESS'::text))
+                          Rows Removed by Filter: 6944
+                          Buffers: shared hit=2315
+Planning:
+  Buffers: shared hit=159
+Planning Time: 0.220 ms
+Execution Time: 56.014 ms
+=== R08 run 3 ===
+Finalize GroupAggregate  (cost=20955.10..36280.64 rows=87671 width=53) (actual time=43.986..56.067 rows=18 loops=1)
+  Group Key: (date_trunc('month'::text, paid_at)), method
+  Buffers: shared hit=2380, temp read=853 written=856
+  ->  Gather Merge  (cost=20955.10..33869.69 rows=87671 width=53) (actual time=43.192..56.053 rows=36 loops=1)
+        Workers Planned: 1
+        Workers Launched: 1
+        Buffers: shared hit=2380, temp read=853 written=856
+        ->  Partial GroupAggregate  (cost=19955.09..23006.69 rows=87671 width=53) (actual time=31.269..43.369 rows=18 loops=2)
+              Group Key: (date_trunc('month'::text, paid_at)), method
+              Buffers: shared hit=2380, temp read=853 written=856
+              ->  Sort  (cost=19955.09..20302.40 rows=138923 width=19) (actual time=30.492..36.557 rows=118056 loops=2)
+                    Sort Key: (date_trunc('month'::text, paid_at)), method
+                    Sort Method: external merge  Disk: 3528kB
+                    Buffers: shared hit=2380, temp read=853 written=856
+                    Worker 0:  Sort Method: external merge  Disk: 3296kB
+                    ->  Parallel Seq Scan on payments  (cost=0.00..5235.84 rows=138923 width=19) (actual time=0.007..14.660 rows=118056 loops=2)
+                          Filter: ((paid_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone) AND (paid_at < '2027-01-01 00:00:00+05:30'::timestamp with time zone) AND ((payment_status)::text = 'SUCCESS'::text))
+                          Rows Removed by Filter: 6944
+                          Buffers: shared hit=2315
+Planning:
+  Buffers: shared hit=159
+Planning Time: 0.215 ms
+Execution Time: 56.765 ms

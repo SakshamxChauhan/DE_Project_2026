@@ -1,0 +1,60 @@
+=== R18 run 1 ===
+Sort  (cost=39666202.19..39666214.69 rows=5000 width=29) (actual time=36402.579..36402.698 rows=5000 loops=1)
+  Sort Key: ((SubPlan 1)) DESC NULLS LAST
+  Sort Method: quicksort  Memory: 466kB
+  Buffers: shared hit=24040373
+  ->  Seq Scan on riders r  (cost=0.00..39665895.00 rows=5000 width=29) (actual time=10.487..36400.857 rows=5000 loops=1)
+        Filter: (home_city_id = 6)
+        Rows Removed by Filter: 25000
+        Buffers: shared hit=24040370
+        SubPlan 1
+          ->  Aggregate  (cost=7933.02..7933.03 rows=1 width=8) (actual time=7.279..7.279 rows=1 loops=5000)
+                Buffers: shared hit=24040000
+                ->  Seq Scan on trips t  (cost=0.00..7933.00 rows=8 width=8) (actual time=0.437..7.276 rows=8 loops=5000)
+                      Filter: (rider_id = r.rider_id)
+                      Rows Removed by Filter: 249992
+                      Buffers: shared hit=24040000
+Planning:
+  Buffers: shared hit=119
+Planning Time: 0.205 ms
+Execution Time: 36402.826 ms
+=== R18 run 2 ===
+Sort  (cost=39666202.19..39666214.69 rows=5000 width=29) (actual time=36753.509..36753.627 rows=5000 loops=1)
+  Sort Key: ((SubPlan 1)) DESC NULLS LAST
+  Sort Method: quicksort  Memory: 466kB
+  Buffers: shared hit=24040373
+  ->  Seq Scan on riders r  (cost=0.00..39665895.00 rows=5000 width=29) (actual time=10.471..36751.312 rows=5000 loops=1)
+        Filter: (home_city_id = 6)
+        Rows Removed by Filter: 25000
+        Buffers: shared hit=24040370
+        SubPlan 1
+          ->  Aggregate  (cost=7933.02..7933.03 rows=1 width=8) (actual time=7.349..7.349 rows=1 loops=5000)
+                Buffers: shared hit=24040000
+                ->  Seq Scan on trips t  (cost=0.00..7933.00 rows=8 width=8) (actual time=0.442..7.345 rows=8 loops=5000)
+                      Filter: (rider_id = r.rider_id)
+                      Rows Removed by Filter: 249992
+                      Buffers: shared hit=24040000
+Planning:
+  Buffers: shared hit=119
+Planning Time: 0.245 ms
+Execution Time: 36753.918 ms
+=== R18 run 3 ===
+Sort  (cost=39666202.19..39666214.69 rows=5000 width=29) (actual time=35633.462..35633.576 rows=5000 loops=1)
+  Sort Key: ((SubPlan 1)) DESC NULLS LAST
+  Sort Method: quicksort  Memory: 466kB
+  Buffers: shared hit=24040373
+  ->  Seq Scan on riders r  (cost=0.00..39665895.00 rows=5000 width=29) (actual time=9.727..35631.851 rows=5000 loops=1)
+        Filter: (home_city_id = 6)
+        Rows Removed by Filter: 25000
+        Buffers: shared hit=24040370
+        SubPlan 1
+          ->  Aggregate  (cost=7933.02..7933.03 rows=1 width=8) (actual time=7.125..7.125 rows=1 loops=5000)
+                Buffers: shared hit=24040000
+                ->  Seq Scan on trips t  (cost=0.00..7933.00 rows=8 width=8) (actual time=0.423..7.123 rows=8 loops=5000)
+                      Filter: (rider_id = r.rider_id)
+                      Rows Removed by Filter: 249992
+                      Buffers: shared hit=24040000
+Planning:
+  Buffers: shared hit=114
+Planning Time: 0.220 ms
+Execution Time: 35633.696 ms

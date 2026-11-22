@@ -1,0 +1,69 @@
+=== R10 run 1 ===
+Hash Right Anti Join  (cost=1222.80..22343.25 rows=1 width=25) (actual time=19.644..20.824 rows=3500 loops=1)
+  Hash Cond: (t.driver_id = d.driver_id)
+  Buffers: shared hit=9460 read=5495 written=152
+  ->  Gather  (cost=1000.00..21834.95 rows=20767 width=4) (actual time=0.078..18.584 rows=20830 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=9412 read=5440 written=97
+        ->  Parallel Seq Scan on trips t  (cost=0.00..18758.25 rows=8653 width=4) (actual time=0.031..16.683 rows=6943 loops=3)
+              Filter: (requested_at >= '2026-06-25 00:00:00+05:30'::timestamp with time zone)
+              Rows Removed by Filter: 243057
+              Buffers: shared hit=9412 read=5440 written=97
+  ->  Hash  (cost=165.50..165.50 rows=4584 width=25) (actual time=0.794..0.794 rows=4584 loops=1)
+        Buckets: 8192  Batches: 1  Memory Usage: 333kB
+        Buffers: shared hit=48 read=55 written=55
+        ->  Seq Scan on drivers d  (cost=0.00..165.50 rows=4584 width=25) (actual time=0.003..0.551 rows=4584 loops=1)
+              Filter: ((status)::text = 'ACTIVE'::text)
+              Rows Removed by Filter: 416
+              Buffers: shared hit=48 read=55 written=55
+Planning:
+  Buffers: shared hit=407 read=7 written=7
+Planning Time: 0.571 ms
+Execution Time: 20.904 ms
+=== R10 run 2 ===
+Hash Right Anti Join  (cost=1222.80..22343.25 rows=1 width=25) (actual time=18.384..19.212 rows=3500 loops=1)
+  Hash Cond: (t.driver_id = d.driver_id)
+  Buffers: shared hit=9612 read=5343 written=4
+  ->  Gather  (cost=1000.00..21834.95 rows=20767 width=4) (actual time=0.114..17.355 rows=20830 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=9509 read=5343 written=4
+        ->  Parallel Seq Scan on trips t  (cost=0.00..18758.25 rows=8653 width=4) (actual time=0.042..15.770 rows=6943 loops=3)
+              Filter: (requested_at >= '2026-06-25 00:00:00+05:30'::timestamp with time zone)
+              Rows Removed by Filter: 243057
+              Buffers: shared hit=9509 read=5343 written=4
+  ->  Hash  (cost=165.50..165.50 rows=4584 width=25) (actual time=0.634..0.634 rows=4584 loops=1)
+        Buckets: 8192  Batches: 1  Memory Usage: 333kB
+        Buffers: shared hit=103
+        ->  Seq Scan on drivers d  (cost=0.00..165.50 rows=4584 width=25) (actual time=0.002..0.404 rows=4584 loops=1)
+              Filter: ((status)::text = 'ACTIVE'::text)
+              Rows Removed by Filter: 416
+              Buffers: shared hit=103
+Planning:
+  Buffers: shared hit=412
+Planning Time: 0.517 ms
+Execution Time: 19.294 ms
+=== R10 run 3 ===
+Hash Right Anti Join  (cost=1222.80..22343.25 rows=1 width=25) (actual time=18.503..19.410 rows=3500 loops=1)
+  Hash Cond: (t.driver_id = d.driver_id)
+  Buffers: shared hit=9708 read=5247
+  ->  Gather  (cost=1000.00..21834.95 rows=20767 width=4) (actual time=0.077..17.546 rows=20830 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        Buffers: shared hit=9605 read=5247
+        ->  Parallel Seq Scan on trips t  (cost=0.00..18758.25 rows=8653 width=4) (actual time=0.017..15.925 rows=6943 loops=3)
+              Filter: (requested_at >= '2026-06-25 00:00:00+05:30'::timestamp with time zone)
+              Rows Removed by Filter: 243057
+              Buffers: shared hit=9605 read=5247
+  ->  Hash  (cost=165.50..165.50 rows=4584 width=25) (actual time=0.625..0.626 rows=4584 loops=1)
+        Buckets: 8192  Batches: 1  Memory Usage: 333kB
+        Buffers: shared hit=103
+        ->  Seq Scan on drivers d  (cost=0.00..165.50 rows=4584 width=25) (actual time=0.002..0.390 rows=4584 loops=1)
+              Filter: ((status)::text = 'ACTIVE'::text)
+              Rows Removed by Filter: 416
+              Buffers: shared hit=103
+Planning:
+  Buffers: shared hit=412
+Planning Time: 0.502 ms
+Execution Time: 19.490 ms

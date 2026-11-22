@@ -1,0 +1,33 @@
+=== W05 run 1 ===
+Delete on trips  (cost=0.42..4646.06 rows=0 width=0) (actual time=7.758..7.758 rows=0 loops=1)
+  Buffers: shared hit=147 read=497 written=173
+  ->  Index Scan using idx_trips_city_req on trips  (cost=0.42..4646.06 rows=1 width=6) (actual time=7.758..7.758 rows=0 loops=1)
+        Index Cond: (requested_at < '2025-02-01 00:00:00+05:30'::timestamp with time zone)
+        Filter: ((status)::text ~~ 'CANCELLED%'::text)
+        Buffers: shared hit=147 read=497 written=173
+Planning:
+  Buffers: shared hit=214
+Planning Time: 0.330 ms
+Execution Time: 7.789 ms
+=== W05 run 2 ===
+Delete on trips  (cost=0.42..4646.06 rows=0 width=0) (actual time=1.166..1.166 rows=0 loops=1)
+  Buffers: shared hit=644
+  ->  Index Scan using idx_trips_city_req on trips  (cost=0.42..4646.06 rows=1 width=6) (actual time=1.165..1.165 rows=0 loops=1)
+        Index Cond: (requested_at < '2025-02-01 00:00:00+05:30'::timestamp with time zone)
+        Filter: ((status)::text ~~ 'CANCELLED%'::text)
+        Buffers: shared hit=644
+Planning:
+  Buffers: shared hit=214
+Planning Time: 0.350 ms
+Execution Time: 1.199 ms
+=== W05 run 3 ===
+Delete on trips  (cost=0.42..4646.06 rows=0 width=0) (actual time=1.275..1.275 rows=0 loops=1)
+  Buffers: shared hit=644
+  ->  Index Scan using idx_trips_city_req on trips  (cost=0.42..4646.06 rows=1 width=6) (actual time=1.275..1.275 rows=0 loops=1)
+        Index Cond: (requested_at < '2025-02-01 00:00:00+05:30'::timestamp with time zone)
+        Filter: ((status)::text ~~ 'CANCELLED%'::text)
+        Buffers: shared hit=644
+Planning:
+  Buffers: shared hit=214
+Planning Time: 0.344 ms
+Execution Time: 1.310 ms

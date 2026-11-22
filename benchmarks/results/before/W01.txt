@@ -1,0 +1,33 @@
+=== W01 run 1 ===
+Insert on trips  (cost=0.00..0.01 rows=0 width=0) (actual time=0.109..0.109 rows=0 loops=1)
+  Buffers: shared hit=39
+  ->  Result  (cost=0.00..0.01 rows=1 width=306) (actual time=0.002..0.002 rows=1 loops=1)
+Planning Time: 0.037 ms
+Trigger for constraint trips_rider_id_fkey: time=0.208 calls=1
+Trigger for constraint trips_driver_id_fkey: time=0.008 calls=1
+Trigger for constraint trips_vehicle_id_fkey: time=0.006 calls=1
+Trigger for constraint trips_city_id_fkey: time=0.079 calls=1
+Trigger for constraint trips_promo_code_fkey: time=0.006 calls=1
+Execution Time: 0.427 ms
+=== W01 run 2 ===
+Insert on trips  (cost=0.00..0.01 rows=0 width=0) (actual time=0.080..0.080 rows=0 loops=1)
+  Buffers: shared hit=39
+  ->  Result  (cost=0.00..0.01 rows=1 width=306) (actual time=0.002..0.002 rows=1 loops=1)
+Planning Time: 0.035 ms
+Trigger for constraint trips_rider_id_fkey: time=0.203 calls=1
+Trigger for constraint trips_driver_id_fkey: time=0.008 calls=1
+Trigger for constraint trips_vehicle_id_fkey: time=0.006 calls=1
+Trigger for constraint trips_city_id_fkey: time=0.065 calls=1
+Trigger for constraint trips_promo_code_fkey: time=0.006 calls=1
+Execution Time: 0.379 ms
+=== W01 run 3 ===
+Insert on trips  (cost=0.00..0.01 rows=0 width=0) (actual time=0.079..0.080 rows=0 loops=1)
+  Buffers: shared hit=39
+  ->  Result  (cost=0.00..0.01 rows=1 width=306) (actual time=0.002..0.002 rows=1 loops=1)
+Planning Time: 0.033 ms
+Trigger for constraint trips_rider_id_fkey: time=0.192 calls=1
+Trigger for constraint trips_driver_id_fkey: time=0.008 calls=1
+Trigger for constraint trips_vehicle_id_fkey: time=0.006 calls=1
+Trigger for constraint trips_city_id_fkey: time=0.062 calls=1
+Trigger for constraint trips_promo_code_fkey: time=0.005 calls=1
+Execution Time: 0.362 ms

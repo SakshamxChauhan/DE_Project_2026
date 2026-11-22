@@ -1,0 +1,33 @@
+=== W04 run 1 ===
+Insert on trips  (cost=0.00..150.00 rows=0 width=0) (actual time=56.393..56.393 rows=0 loops=1)
+  Buffers: shared hit=85558 read=4094 dirtied=4106 written=913
+  ->  Function Scan on generate_series g  (cost=0.00..150.00 rows=5000 width=306) (actual time=0.437..1.562 rows=5000 loops=1)
+Planning Time: 0.154 ms
+Trigger for constraint trips_rider_id_fkey: time=11.764 calls=5000
+Trigger for constraint trips_driver_id_fkey: time=1.096 calls=5000
+Trigger for constraint trips_vehicle_id_fkey: time=0.925 calls=5000
+Trigger for constraint trips_city_id_fkey: time=8.296 calls=5000
+Trigger for constraint trips_promo_code_fkey: time=1.012 calls=5000
+Execution Time: 80.128 ms
+=== W04 run 2 ===
+Insert on trips  (cost=0.00..150.00 rows=0 width=0) (actual time=30.631..30.631 rows=0 loops=1)
+  Buffers: shared hit=92838 read=22 dirtied=127 written=103
+  ->  Function Scan on generate_series g  (cost=0.00..150.00 rows=5000 width=306) (actual time=0.112..0.696 rows=5000 loops=1)
+Planning Time: 0.048 ms
+Trigger for constraint trips_rider_id_fkey: time=10.571 calls=5000
+Trigger for constraint trips_driver_id_fkey: time=0.936 calls=5000
+Trigger for constraint trips_vehicle_id_fkey: time=0.860 calls=5000
+Trigger for constraint trips_city_id_fkey: time=7.716 calls=5000
+Trigger for constraint trips_promo_code_fkey: time=0.920 calls=5000
+Execution Time: 52.182 ms
+=== W04 run 3 ===
+Insert on trips  (cost=0.00..150.00 rows=0 width=0) (actual time=35.381..35.382 rows=0 loops=1)
+  Buffers: shared hit=92902 dirtied=99 written=97
+  ->  Function Scan on generate_series g  (cost=0.00..150.00 rows=5000 width=306) (actual time=0.112..0.714 rows=5000 loops=1)
+Planning Time: 0.047 ms
+Trigger for constraint trips_rider_id_fkey: time=11.956 calls=5000
+Trigger for constraint trips_driver_id_fkey: time=0.941 calls=5000
+Trigger for constraint trips_vehicle_id_fkey: time=0.841 calls=5000
+Trigger for constraint trips_city_id_fkey: time=7.585 calls=5000
+Trigger for constraint trips_promo_code_fkey: time=0.905 calls=5000
+Execution Time: 58.156 ms
